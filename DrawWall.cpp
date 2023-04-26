@@ -129,7 +129,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 	//左真ん中壁
 	SetMatrix(middleRightWallWorld_, middleRightWallScale_, middleRightWallRotate_, middleRightWallTransform_, scale_, rotateRight_, { trapezoidCenter_.x+336.0f, trapezoidCenter_.y+218.0f });
 
-	for (size_t i = 0; i < Wall::kMax; i++) {
+	for (int i = 0; i < Wall::kMax; i++) {
 		switch (i)
 		{
 		case Wall::backLeft:
