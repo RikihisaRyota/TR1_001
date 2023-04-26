@@ -142,17 +142,17 @@ void Wall::SetGrid(Player& player)
 	switch (player.GetState())
 	{
 	case Player::State::Front:
-		m_Pos[1] = player.GetPos();
+		m_Pos[7] = player.GetPos();
 		m_Pos[4] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
-		m_Pos[7] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
+		m_Pos[1] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
 
-		m_Pos[2] = { m_Pos[1].x + Mapchip::kChipSize,m_Pos[1].y };
-		m_Pos[5] = { m_Pos[4].x + Mapchip::kChipSize,m_Pos[4].y };
-		m_Pos[8] = { m_Pos[7].x + Mapchip::kChipSize,m_Pos[7].y };
+		m_Pos[2] = { m_Pos[1].x - Mapchip::kChipSize,m_Pos[1].y };
+		m_Pos[5] = { m_Pos[4].x - Mapchip::kChipSize,m_Pos[4].y };
+		m_Pos[8] = { m_Pos[7].x - Mapchip::kChipSize,m_Pos[7].y };
 
-		m_Pos[0] = { m_Pos[1].x - Mapchip::kChipSize,m_Pos[1].y };
-		m_Pos[3] = { m_Pos[4].x - Mapchip::kChipSize,m_Pos[4].y };
-		m_Pos[6] = { m_Pos[7].x - Mapchip::kChipSize,m_Pos[7].y };
+		m_Pos[0] = { m_Pos[1].x + Mapchip::kChipSize,m_Pos[1].y };
+		m_Pos[3] = { m_Pos[4].x + Mapchip::kChipSize,m_Pos[4].y };
+		m_Pos[6] = { m_Pos[7].x + Mapchip::kChipSize,m_Pos[7].y };
 		////m_Pos
 		////真ん中
 		//m_Pos[1] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
@@ -195,6 +195,7 @@ void Wall::SetGrid(Player& player)
 		m_Pos[0] = { m_Pos[1].x - Mapchip::kChipSize,m_Pos[1].y };
 		m_Pos[3] = { m_Pos[4].x - Mapchip::kChipSize,m_Pos[4].y };
 		m_Pos[6] = { m_Pos[7].x - Mapchip::kChipSize,m_Pos[7].y };
+
 		////m_Pos
 		////真ん中
 		//m_Pos[7] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
@@ -224,17 +225,18 @@ void Wall::SetGrid(Player& player)
 		//m_Box[0][0] = RightBack;
 		break;
 	case Player::State::Left:
-		m_Pos[5] = player.GetPos();
+
+		m_Pos[7] = player.GetPos();
 		m_Pos[4] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
-		m_Pos[3] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
-		//左
-		m_Pos[8] = { m_Pos[5].x,m_Pos[5].y + Mapchip::kChipSize };
-		m_Pos[7] = { m_Pos[4].x,m_Pos[4].y + Mapchip::kChipSize };
-		m_Pos[6] = { m_Pos[3].x,m_Pos[3].y + Mapchip::kChipSize };
-		//右
-		m_Pos[2] = { m_Pos[5].x ,m_Pos[5].y - Mapchip::kChipSize };
-		m_Pos[1] = { m_Pos[4].x ,m_Pos[4].y - Mapchip::kChipSize };
-		m_Pos[0] = { m_Pos[3].x ,m_Pos[3].y - Mapchip::kChipSize };
+		m_Pos[1] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
+
+		m_Pos[2] = { m_Pos[1].x ,m_Pos[1].y - Mapchip::kChipSize };
+		m_Pos[5] = { m_Pos[4].x ,m_Pos[4].y - Mapchip::kChipSize };
+		m_Pos[8] = { m_Pos[7].x ,m_Pos[7].y - Mapchip::kChipSize };
+
+		m_Pos[0] = { m_Pos[1].x ,m_Pos[1].y + Mapchip::kChipSize };
+		m_Pos[3] = { m_Pos[4].x ,m_Pos[4].y + Mapchip::kChipSize };
+		m_Pos[6] = { m_Pos[7].x ,m_Pos[7].y + Mapchip::kChipSize };
 		////真ん中
 		//m_Pos[5] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
 		//m_Pos[4] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
@@ -263,17 +265,17 @@ void Wall::SetGrid(Player& player)
 		//m_Box[0][0] = RightBack;
 		break;
 	case Player::State::Right:
-		m_Pos[3] = player.GetPos();
+		m_Pos[7] = player.GetPos();
 		m_Pos[4] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
-		m_Pos[5] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
-		//左
-		m_Pos[8] = { m_Pos[3].x,m_Pos[3].y + Mapchip::kChipSize };
-		m_Pos[7] = { m_Pos[4].x,m_Pos[4].y + Mapchip::kChipSize };
-		m_Pos[6] = { m_Pos[5].x,m_Pos[5].y + Mapchip::kChipSize };
-		//右
-		m_Pos[2] = { m_Pos[3].x ,m_Pos[3].y - Mapchip::kChipSize };
-		m_Pos[1] = { m_Pos[4].x ,m_Pos[4].y - Mapchip::kChipSize };
-		m_Pos[0] = { m_Pos[5].x ,m_Pos[5].y - Mapchip::kChipSize };
+		m_Pos[1] = player.GetPos() + player.GetFront() * 2 * Mapchip::kChipSize;
+
+		m_Pos[2] = { m_Pos[1].x,m_Pos[1].y + Mapchip::kChipSize };
+		m_Pos[5] = { m_Pos[4].x,m_Pos[4].y + Mapchip::kChipSize };
+		m_Pos[8] = { m_Pos[7].x,m_Pos[7].y + Mapchip::kChipSize };
+
+		m_Pos[0] = { m_Pos[1].x ,m_Pos[1].y - Mapchip::kChipSize };
+		m_Pos[3] = { m_Pos[4].x ,m_Pos[4].y - Mapchip::kChipSize };
+		m_Pos[6] = { m_Pos[7].x ,m_Pos[7].y - Mapchip::kChipSize };
 		////真ん中
 		//m_Pos[3] = player.GetPos() + player.GetFront() * Mapchip::kChipSize;
 		//m_Pos[5] = player.GetPos() + player.GetFront() * 3 * Mapchip::kChipSize;
