@@ -133,6 +133,10 @@ private:
 	Matrix33  middleRightWallTransform_;
 	Matrix33  middleRightWallWorld_;
 
+	//天井
+
+	//床
+
 	unsigned int  frontColor;
 	unsigned int  middleColor;
 	unsigned int  backColor;
