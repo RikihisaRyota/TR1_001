@@ -290,6 +290,8 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 void DrawWall::Draw()
 {
 	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, WHITE, kFillModeWireFrame);
+	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, BLACK, kFillModeSolid);
+	//Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y + gridHeight_ / 2.0f), gridWidth_, gridHeight_/2, 0.0f, WHITE, kFillModeSolid);
 	Quad frontLeftTmp = frontLefttrapezoid_ * frontLeftWorld_;
 	Quad frontRightTmp = frontLefttrapezoid_ * frontRightWorld_;
 	Quad frontCenterTmp = frontCentertrapezoid_ * frontCenterWorld_;
@@ -372,6 +374,16 @@ void DrawWall::Draw()
 	//
 	//Novice::DrawLine(backLeftTmp.RightBottom.x, backLeftTmp.RightBottom.y, backLeftTmp.RightBottom.x, grid_.LeftTop.y + gridHeight_, BLUE);
 	//Novice::ScreenPrintf(500, 600, "BLUE:%f", grid_.LeftTop.y + gridHeight_ - backLeftTmp.RightBottom.y);
+	Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
+	Novice::ScreenPrintf(1100, 220, "middleLeft 	:2");
+	Novice::ScreenPrintf(1100, 240, "backLeft   	:3");
+	Novice::ScreenPrintf(1100, 280, "frontRight	 :4");
+	Novice::ScreenPrintf(1100, 300, "middleRight :5");
+	Novice::ScreenPrintf(1100, 320, "backRight	  :6");
+	Novice::ScreenPrintf(1100, 360, "backCenter	 :7");
+	Novice::ScreenPrintf(1100, 380, "middleCenter:8");
+	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
+
 
 }
 
