@@ -110,13 +110,13 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 	SetMatrix(backRightWorld_, backRightScale_, backRightRotate_, backRightTransform_, scale_, rotateRight_, { middleRightTmp.RightTop.x,middleRightTmp.RightTop.y });
 
 	//真ん中奥
-	SetMatrix(backCenterWorld_, backCenterScale_, backCenterRotate_, backCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 336.0f, trapezoidCenter_.y - 97.0f });
+	SetMatrix(backCenterWorld_, backCenterScale_, backCenterRotate_, backCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x-336.0f, trapezoidCenter_.y - 97.0f });
 
 	//真ん中真ん中
-	SetMatrix(middleCenterWorld_, middleCenterScale_, middleCenterRotate_, middleCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 147.0f , trapezoidCenter_.y - 160.0f });
+	SetMatrix(middleCenterWorld_, middleCenterScale_, middleCenterRotate_, middleCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x -336.0f , trapezoidCenter_.y - 160.0f });
 
 	//真ん中手前
-	SetMatrix(frontCenterWorld_, frontCenterScale_, frontCenterRotate_, frontCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 231.0f, trapezoidCenter_.y - 244.0f });
+	SetMatrix(frontCenterWorld_, frontCenterScale_, frontCenterRotate_, frontCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 336.0f, trapezoidCenter_.y - 244.0f });
 
 	//左奥壁
 	SetMatrix(backLeftWallWorld_, backLeftWallScale_, backLeftWallRotate_, backLeftWallTransform_, scale_, rotateLeft_, { trapezoidCenter_.x - 336.0f, trapezoidCenter_.y-160.0f });
@@ -346,11 +346,8 @@ void DrawWall::Draw()
 
 	//デバック
 	//Novice::DrawLine(frontLeftTmp.RightTop.x, frontLeftTmp.RightTop.y, frontRightTmp.LeftBottom.x, frontRightTmp.RightBottom.y, BLACK);
-	//Novice::DrawLine(frontCenterTmp.LeftTop.x, frontCenterTmp.LeftTop.y, frontLeftTmp.RightTop.x, frontLeftTmp.RightTop.y, BLACK);
-	//Novice::ScreenPrintf(50, 400, "%f", frontCenterTmp.LeftTop.x);
-	//Novice::ScreenPrintf(50, 420, "%f", frontLeftTmp.RightTop.x);
-	//Novice::ScreenPrintf(50, 440, "%f", frontCenterTmp.LeftTop.y);
-	//Novice::ScreenPrintf(50, 460, "%f", frontLeftTmp.RightTop.y);
+	//Novice::DrawLine(frontCenterTmp.LeftTop.x, frontCenterTmp.LeftTop.y, grid_.LeftTop.x, frontCenterTmp.LeftTop.y, BLACK);
+	//Novice::ScreenPrintf(500, 540, "X:%f", frontCenterTmp.LeftTop.x - grid_.LeftTop.x);
 	//
 	//Novice::DrawLine(frontCenterTmp.RightBottom.x, frontCenterTmp.RightBottom.y, frontRightTmp.RightTop.x, frontRightTmp.RightTop.y, BLACK);
 	//Novice::ScreenPrintf(50, 500, "%f", frontCenterTmp.RightBottom.x);
@@ -386,6 +383,15 @@ void DrawWall::Draw()
 	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
 
 
+	Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
+	Novice::ScreenPrintf(1100, 220, "middleLeft 	:2");
+	Novice::ScreenPrintf(1100, 240, "backLeft   	:3");
+	Novice::ScreenPrintf(1100, 280, "frontRight	 :4");
+	Novice::ScreenPrintf(1100, 300, "middleRight :5");
+	Novice::ScreenPrintf(1100, 320, "backRight	  :6");
+	Novice::ScreenPrintf(1100, 360, "backCenter	 :7");
+	Novice::ScreenPrintf(1100, 380, "middleCenter:8");
+	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
 }
 
 void DrawWall::SetMatrix(Matrix33& world,Matrix33& matScale, Matrix33& matRotate, Matrix33& matTransform, const float scale, const float rotate, const Vec2 position)
