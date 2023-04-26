@@ -137,8 +137,9 @@ private:
 
 	//床
 
-	unsigned int  frontColor;
-	unsigned int  middleColor;
-	unsigned int  backColor;
+	unsigned int frontColor_;
+	unsigned int middleColor_;
+	unsigned int backColor_;
+	unsigned int backGround_;
 };
 
