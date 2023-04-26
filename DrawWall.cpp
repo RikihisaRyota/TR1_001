@@ -75,9 +75,10 @@ void DrawWall::Init()
 		{5.0f,22.0f}
 	};
 
-	frontColor = 0xa9a9a9FF;
-	middleColor = 0x808080FF;
-	backColor = 0x696969FF;
+	frontColor_ = 0xc0c0c0FF;
+	middleColor_ = 0xa9a9a9FF;
+	backColor_ = 0x808080FF;
+	backGround_ = 0x696969FF;
 
 	scale_ = 21.0f;
 	rotateRight_ = static_cast<float>(M_PI);
@@ -290,6 +291,8 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 void DrawWall::Draw()
 {
 	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, WHITE, kFillModeWireFrame);
+	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, backGround_, kFillModeSolid);
+	//Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y + gridHeight_ / 2.0f), gridWidth_, gridHeight_/2, 0.0f, WHITE, kFillModeSolid);
 	Quad frontLeftTmp = frontLefttrapezoid_ * frontLeftWorld_;
 	Quad frontRightTmp = frontLefttrapezoid_ * frontRightWorld_;
 	Quad frontCenterTmp = frontCentertrapezoid_ * frontCenterWorld_;
@@ -307,35 +310,35 @@ void DrawWall::Draw()
 	Quad backCenterTmp = backCentertrapezoid_ * backCenterWorld_;
 
 	if (backLeftFlag) {
-		Novice::DrawQuad(backLeftTmp, backColor);
-		Novice::DrawQuad(backLeftWallTmp, backColor);
+		Novice::DrawQuad(backLeftTmp, backColor_);
+		Novice::DrawQuad(backLeftWallTmp, backColor_);
 	}
 	if (backRightFlag) {
-		Novice::DrawQuad(backRightTmp, backColor);
-		Novice::DrawQuad(backRightWallTmp, backColor);
+		Novice::DrawQuad(backRightTmp, backColor_);
+		Novice::DrawQuad(backRightWallTmp, backColor_);
 	}
 	if (backCenterFlag) {
-		Novice::DrawQuad(backCenterTmp, backColor);
+		Novice::DrawQuad(backCenterTmp, backColor_);
 	}
 	if (middleLeftFlag) {
-		Novice::DrawQuad(middleLeftTmp, middleColor);
-		Novice::DrawQuad(middleLeftWallTmp, middleColor);
+		Novice::DrawQuad(middleLeftTmp, middleColor_);
+		Novice::DrawQuad(middleLeftWallTmp, middleColor_);
 	}
 	if (middleRightFlag) {
-		Novice::DrawQuad(middleRightTmp, middleColor);
-		Novice::DrawQuad(middleRightWallTmp, middleColor);
+		Novice::DrawQuad(middleRightTmp, middleColor_);
+		Novice::DrawQuad(middleRightWallTmp, middleColor_);
 	}
 	if (middleCenterFlag) {
-		Novice::DrawQuad(middleCenterTmp, middleColor);
+		Novice::DrawQuad(middleCenterTmp, middleColor_);
 	}
 	if (frontLeftFlag) {
-		Novice::DrawQuad(frontLeftTmp, frontColor);
+		Novice::DrawQuad(frontLeftTmp, frontColor_);
 	}
 	if (frontRightFlag) {
-		Novice::DrawQuad(frontRightTmp, frontColor);
+		Novice::DrawQuad(frontRightTmp, frontColor_);
 	}
 	if (frontCenterFlag) {
-		Novice::DrawQuad(frontCenterTmp, frontColor);
+		Novice::DrawQuad(frontCenterTmp, frontColor_);
 	}
 	
 
@@ -369,6 +372,16 @@ void DrawWall::Draw()
 	//
 	//Novice::DrawLine(backLeftTmp.RightBottom.x, backLeftTmp.RightBottom.y, backLeftTmp.RightBottom.x, grid_.LeftTop.y + gridHeight_, BLUE);
 	//Novice::ScreenPrintf(500, 600, "BLUE:%f", grid_.LeftTop.y + gridHeight_ - backLeftTmp.RightBottom.y);
+	Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
+	Novice::ScreenPrintf(1100, 220, "middleLeft 	:2");
+	Novice::ScreenPrintf(1100, 240, "backLeft   	:3");
+	Novice::ScreenPrintf(1100, 280, "frontRight	 :4");
+	Novice::ScreenPrintf(1100, 300, "middleRight :5");
+	Novice::ScreenPrintf(1100, 320, "backRight	  :6");
+	Novice::ScreenPrintf(1100, 360, "backCenter	 :7");
+	Novice::ScreenPrintf(1100, 380, "middleCenter:8");
+	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
+
 
 	Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
 	Novice::ScreenPrintf(1100, 220, "middleLeft 	:2");
