@@ -42,9 +42,9 @@ void DrawWall::Init()
 
 	backCentertrapezoid_ = {
 		{0.0f,0.0f},
-		{8.0f,0.0f},
+		{32.0f,0.0f},
 		{0.0f,8.0f},
-		{8.0f,8.0f}
+		{32.0f,8.0f}
 	};
 
 	middleCentertrapezoid_ = {
@@ -109,7 +109,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 	SetMatrix(backRightWorld_, backRightScale_, backRightRotate_, backRightTransform_, scale_, rotateRight_, { middleRightTmp.RightTop.x,middleRightTmp.RightTop.y });
 
 	//真ん中奥
-	SetMatrix(backCenterWorld_, backCenterScale_, backCenterRotate_, backCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 84.0f, trapezoidCenter_.y - 97.0f });
+	SetMatrix(backCenterWorld_, backCenterScale_, backCenterRotate_, backCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 336.0f, trapezoidCenter_.y - 97.0f });
 
 	//真ん中真ん中
 	SetMatrix(middleCenterWorld_, middleCenterScale_, middleCenterRotate_, middleCenterTransform_, scale_, 0.0f, { trapezoidCenter_.x - 147.0f , trapezoidCenter_.y - 160.0f });
