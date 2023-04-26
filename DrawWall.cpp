@@ -141,12 +141,12 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 				backLeftFlag = false;
 			}
 			break;
-		case Wall::backCenter:
+		case Wall::middleCenter:
 			if (wall.getBox(i) == 1) {
-				backCenterFlag = true;
+				middleCenterFlag = true;
 			}
 			else {
-				backCenterFlag = false;
+				middleCenterFlag = false;
 			}
 			break;
 		case Wall::backRight:
@@ -165,12 +165,12 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 				middleLeftFlag = false;
 			}
 			break;
-		case Wall::middleCenter:
+		case Wall::frontCenter:
 			if (wall.getBox(i) == 1) {
-				middleCenterFlag = true;
+				frontCenterFlag = true;
 			}
 			else {
-				middleCenterFlag = false;
+				frontCenterFlag = false;
 			}
 			break;
 		case Wall::middleRight:
@@ -189,13 +189,8 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 				frontLeftFlag = false;
 			}
 			break;
-		case Wall::frontCenter:
-			if (wall.getBox(i) == 1) {
-				frontCenterFlag = true;
-			}
-			else {
-				frontCenterFlag = false;
-			}
+		case Wall::player:
+			
 			break;
 		case Wall::frontRight:
 			if (wall.getBox(i) == 1) {
