@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		mapchip.Draw();
 		player.Draw();
 		wall.Draw();
-		drawWall.Draw();
+		/*drawWall.Draw();*/
 		///
 		/// ↑描画処理ここまで
 		///
