@@ -129,7 +129,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 	//左真ん中壁
 	SetMatrix(middleRightWallWorld_, middleRightWallScale_, middleRightWallRotate_, middleRightWallTransform_, scale_, rotateRight_, { trapezoidCenter_.x+336.0f, trapezoidCenter_.y+218.0f });
 
-	for (size_t i = 0; i < Wall::kMax; i++) {
+	for (int i = 0; i < Wall::kMax; i++) {
 		switch (i)
 		{
 		case Wall::backLeft:
@@ -355,13 +355,13 @@ void DrawWall::Draw()
 	//Novice::ScreenPrintf(50, 540, "%f", frontCenterTmp.RightBottom.y);
 	//Novice::ScreenPrintf(50, 560, "%f", frontRightTmp.RightTop.y);
 	//
-	Novice::DrawLine(middleLeftWallTmp.RightTop.x, middleLeftWallTmp.RightTop.y,middleLeftTmp.LeftTop.x, middleLeftTmp.LeftTop.y, RED);
-	Novice::ScreenPrintf(500, 540, "X:%f", middleLeftWallTmp.RightTop.x - middleLeftTmp.LeftTop.x);
-	Novice::ScreenPrintf(500, 560, "Y:%f", middleLeftWallTmp.RightTop.y - middleLeftTmp.LeftTop.y);
-
-	Novice::DrawLine(middleRightWallTmp.RightBottom.x, middleRightWallTmp.RightBottom.y, middleRightTmp.LeftBottom.x, middleRightTmp.LeftBottom.y, RED);
-	Novice::ScreenPrintf(500, 580, "X:%f", middleRightWallTmp.RightBottom.x - middleRightTmp.LeftBottom.x);
-	Novice::ScreenPrintf(500, 600, "Y:%f", middleRightWallTmp.RightBottom.y - middleRightTmp.LeftBottom.y);
+	//Novice::DrawLine(middleLeftWallTmp.RightTop.x, middleLeftWallTmp.RightTop.y,middleLeftTmp.LeftTop.x, middleLeftTmp.LeftTop.y, RED);
+	//Novice::ScreenPrintf(500, 540, "X:%f", middleLeftWallTmp.RightTop.x - middleLeftTmp.LeftTop.x);
+	//Novice::ScreenPrintf(500, 560, "Y:%f", middleLeftWallTmp.RightTop.y - middleLeftTmp.LeftTop.y);
+	//
+	//Novice::DrawLine(middleRightWallTmp.RightBottom.x, middleRightWallTmp.RightBottom.y, middleRightTmp.LeftBottom.x, middleRightTmp.LeftBottom.y, RED);
+	//Novice::ScreenPrintf(500, 580, "X:%f", middleRightWallTmp.RightBottom.x - middleRightTmp.LeftBottom.x);
+	//Novice::ScreenPrintf(500, 600, "Y:%f", middleRightWallTmp.RightBottom.y - middleRightTmp.LeftBottom.y);
 
 	//Novice::DrawLine(backLeftWallTmp.RightTop.x, backLeftWallTmp.RightTop.y, backLeftTmp.LeftTop.x, backLeftTmp.LeftTop.y, BLUE);
 	
