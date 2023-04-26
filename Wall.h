@@ -21,13 +21,13 @@ public:
 
 	enum Box {
 		backLeft,
-		backCenter,
+		middleCenter,
 		backRight,
 		middleLeft,
-		middleCenter,
+		frontCenter,
 		middleRight,
 		frontLeft,
-		frontCenter,
+		player,
 		frontRight,
 	};
 private:
