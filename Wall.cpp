@@ -18,17 +18,17 @@ void Wall::Init()
 
 void Wall::Draw()
 {
-	for (size_t i = 0; i < kMax; i++) {
-		if (m_Box[i] == 0) {
-			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, WHITE, kFillModeSolid);
-		}
-		else if (m_Box[i] == 1) {
-			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, RED, kFillModeWireFrame);
-		}
-		else {
-			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, BLUE, kFillModeWireFrame);
-		}
-	}
+	//for (size_t i = 0; i < kMax; i++) {
+	//	if (m_Box[i] == 0) {
+	//		Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, WHITE, kFillModeSolid);
+	//	}
+	//	else if (m_Box[i] == 1) {
+	//		Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, RED, kFillModeWireFrame);
+	//	}
+	//	else {
+	//		Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, BLUE, kFillModeWireFrame);
+	//	}
+	//}
 }
 
 void Wall::Update(Player& player, Mapchip& map)
@@ -46,6 +46,9 @@ void Wall::ChackDraw(Player& player, Mapchip& map)
 		else
 			if (map.GetMapchip((ChengeMap(m_Pos[i]))) == 0) {
 				m_Box[i] = 0;
+			}
+			else if (map.GetMapchip((ChengeMap(m_Pos[i]))) == 3) {
+				m_Box[i] = 3;
 			}
 			else {
 				m_Box[i] = 1;
