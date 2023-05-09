@@ -50,9 +50,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		mapchip.Draw();
+		/*mapchip.Draw();
 		player.Draw();
-		wall.Draw();
+		wall.Draw();*/
 		drawWall.Draw();
 		///
 		/// ↑描画処理ここまで
