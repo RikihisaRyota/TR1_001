@@ -11,7 +11,7 @@ public:
 
 	void Init();
 
-	void Update(const Player& player,const Wall& wall);
+	void Update(const Player* player, const Wall* wall);
 
 	void Draw();
 
@@ -136,10 +136,16 @@ private:
 	//天井
 
 	//床
-
 	unsigned int frontColor_;
+	unsigned int frontCenterColor_;
 	unsigned int middleColor_;
+	unsigned int middleCenterColor_;
 	unsigned int backColor_;
+	unsigned int backCenterColor_;
 	unsigned int backGround_;
+	unsigned int frontBaseColor_;
+	unsigned int middleBaseColor_;
+	unsigned int goalBaseColor_;
+
 };
 

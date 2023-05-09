@@ -1,10 +1,27 @@
-#include <Novice.h>
-#include "Mapchip.h"
-#include "Player.h"
-#include "Wall.h"
-#include "DrawWall.h"
+#include "main.h"
 
-const char kWindowTitle[] = "学籍番号";
+const char kWindowTitle[] = "TR1";
+
+void SnceneChange(int num) {
+	if (!sceneOnFlag && sceneChangeColor < 255) {
+		sceneChangeColor += 3;
+	}
+	else if (!sceneOnFlag) {
+		gameScene = nextGameScene;
+		sceneChangeColor = 0x000000FF;
+		sceneOnFlag = true;
+	}
+
+	if (sceneChangeColor > 0 && sceneOnFlag) {
+		sceneChangeColor -= 3;
+	}
+	else if (sceneOnFlag) {
+		sceneChangeColor = 0x00000000;
+		sceneOnFlag = false;
+		sceneChangeFlag = false;
+	}
+}
+
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -12,21 +29,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// ライブラリの初期化
 	Novice::Initialize(kWindowTitle, 1280, 720);
 
-	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	Novice::SetWindowMode(kFullscreen);
 
 	//マップチップ
-	Mapchip mapchip;
+	mapchip = new Mapchip;
 
 	//プレイヤー
-	Player player;
+	player = new Player;
 
 	//Wall
-	Wall wall;
+	wall = new Wall;
 
 	//WallDraw
-	DrawWall drawWall;
+	drawWall = new DrawWall;
+
+	int TITLE = Novice::LoadTexture("./Resource./TITLE.png");
+	int ENDING = Novice::LoadTexture("./Resource./ENDING.png");
+
+	// キー入力結果を受け取る箱
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -40,9 +62,38 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		player.Update(&mapchip);
-		wall.Update(player, mapchip);
-		drawWall.Update(player,wall);
+		switch (gameScene) {
+			{
+		case 0:
+			if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0) {
+				player->Init();
+				wall->Init();
+				drawWall->Init();
+				nextGameScene = 1;
+				sceneChangeFlag = true;
+			}
+			break;
+		case 1:
+			player->Update(mapchip, nextGameScene);
+			wall->Update(player, mapchip);
+			drawWall->Update(player, wall);
+			if (nextGameScene != 1) {
+				nextGameScene = 2;
+				sceneChangeFlag = true;
+			}
+			break;
+		case 2:
+			if (preKeys[DIK_SPACE] == 0 && keys[DIK_SPACE] != 0) {
+				nextGameScene = 0;
+				sceneChangeFlag = true;
+			}
+			break;
+			}
+		}
+		if (sceneChangeFlag) {
+			SnceneChange(nextGameScene);
+		}
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -50,10 +101,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		mapchip.Draw();
-		player.Draw();
-		wall.Draw();
-		drawWall.Draw();
+		switch (gameScene)
+		{
+		case 0:
+			Novice::DrawQuad(0,0,1280,0,0,720,1280,720,0,0,1280,720,TITLE,WHITE);
+			break;
+		case 1:
+			Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x333333FF, kFillModeSolid);
+			mapchip->Draw();
+			player->Draw();
+			drawWall->Draw();
+			break;
+		case 2:
+			Novice::DrawQuad(0, 0, 1280, 0, 0, 720, 1280, 720, 0, 0, 1280, 720, ENDING, WHITE);
+			break;
+		}
+
+		Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x00000000 + sceneChangeColor, kFillModeSolid);
+
+
+
 		///
 		/// ↑描画処理ここまで
 		///
@@ -66,7 +133,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
-
+	//マップチップ
+	delete mapchip;
+	delete player;
+	delete wall;
+	delete drawWall;
 	// ライブラリの終了
 	Novice::Finalize();
 	return 0;

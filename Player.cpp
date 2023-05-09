@@ -6,7 +6,7 @@ Player::Player() {
 	Init();
 }
 
-void Player::Update(Mapchip* map)
+void Player::Update(Mapchip* map, int& num)
 {
 	m_Vec = { 0.0f,0.0f };
 
@@ -30,13 +30,31 @@ void Player::Update(Mapchip* map)
 			m_Vec = { 1.0f,0.0f };
 			SetState();
 		}
-		CheckMove(map);
+		CheckMove(map, num);
 	}
 }
 
 void Player::Draw()
 {
 	Novice::DrawQuad(static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), 0, 0, Mapchip::kChipSize, Mapchip::kChipSize, 192, RED);
+	switch (m_State)
+	{
+	case Player::Front:
+		Novice::DrawQuad(static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), 0, 0, Mapchip::kChipSize, Mapchip::kChipSize, m_FrontArrowTexture, RED);
+		break;
+	case Player::Back:
+		Novice::DrawQuad(static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), 0, 0, Mapchip::kChipSize, Mapchip::kChipSize, m_BackArrowTexture, RED);
+		break;
+	case Player::Right:
+		Novice::DrawQuad(static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), 0, 0, Mapchip::kChipSize, Mapchip::kChipSize, m_RightArrowTexture, RED);
+		break;
+	case Player::Left:
+		Novice::DrawQuad(static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y), static_cast<int>(m_Pos.x), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.x + Mapchip::kChipSize - 1), static_cast<int>(m_Pos.y + Mapchip::kChipSize - 1), 0, 0, Mapchip::kChipSize, Mapchip::kChipSize, m_LeftArrowTexture, RED);
+		break;
+	default:
+		break;
+	}
+
 }
 
 void Player::SetState()
@@ -71,16 +89,23 @@ void Player::Init()
 	m_Vel = Mapchip::kChipSize;
 	m_Size = Mapchip::kChipSize;
 	m_State = Front;
+	m_FrontArrowTexture = Novice::LoadTexture("./Resource./Arrow.png");
+	m_BackArrowTexture = Novice::LoadTexture("./Resource./BackArrow.png");
+	m_RightArrowTexture = Novice::LoadTexture("./Resource./RightArrow.png");
+	m_LeftArrowTexture = Novice::LoadTexture("./Resource./LeftArrow.png");
 }
 
-void Player::CheckMove(Mapchip* map)
+void Player::CheckMove(Mapchip* map,int& num)
 {
 	Vec2 tmp = m_Pos;
 	tmp += m_Vec * static_cast<float>(m_Vel);
 	tmp.x = tmp.x  / Mapchip::kChipSize;
 	tmp.y = tmp.y  / Mapchip::kChipSize;
-	if (map->GetMapchip(tmp) == 0) {
+	if (map->GetMapchip(tmp) == 0|| map->GetMapchip(tmp) == 3) {
 		m_Pos = { tmp.x * Mapchip::kChipSize ,tmp.y * Mapchip::kChipSize };
+	}
+	if (map->GetMapchip(tmp) == 3) {
+		num = 2;
 	}
 }
 

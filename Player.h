@@ -5,7 +5,8 @@ class Player
 {
 public:
 	Player();
-	void Update(Mapchip* map);
+	void Init();
+	void Update(Mapchip* map, int& num);
 	void Draw();
 	enum State {
 		Front,
@@ -21,9 +22,12 @@ private:
 	int m_Size;
 	char m_Keys[256] = { 0 };
 	char m_PreKeys[256] = { 0 };
+	int m_FrontArrowTexture;
+	int m_BackArrowTexture;
+	int m_RightArrowTexture;
+	int m_LeftArrowTexture;
 private:
-	void Init();
-	void CheckMove(Mapchip* map);
+	void CheckMove(Mapchip* map, int& num);
 	void SetFront(Vec2 vec);
 	bool IsTriger(char* key, char* prekey);
 public:

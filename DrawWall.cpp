@@ -76,16 +76,23 @@ void DrawWall::Init()
 	};
 
 	frontColor_ = 0xc0c0c0FF;
+	frontCenterColor_ = frontColor_;
 	middleColor_ = 0xa9a9a9FF;
+	middleCenterColor_ = middleColor_;
 	backColor_ = 0x808080FF;
+	backCenterColor_ = backColor_;
 	backGround_ = 0x696969FF;
+	frontBaseColor_= frontColor_;
+	middleBaseColor_= middleColor_;
+	backCenterColor_ = backColor_;
+	goalBaseColor_=0xffff00ff;
 
 	scale_ = 21.0f;
 	rotateRight_ = static_cast<float>(M_PI);
 	rotateLeft_ = 0.0f;
 }
 
-void DrawWall::Update(const Player& player, const Wall& wall)
+void DrawWall::Update(const Player* player, const Wall* wall)
 {
 	//左手前
 	SetMatrix(frontLeftWorld_, frontLeftScale_, frontLeftRotate_, frontLeftTransform_, scale_, rotateLeft_, { grid_.LeftTop.x,grid_.LeftTop.y });
@@ -134,7 +141,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 		switch (i)
 		{
 		case Wall::backLeft:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				backLeftFlag = true;
 			}
 			else {
@@ -142,7 +149,13 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::middleCenter:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1 || wall->getBox(i) == 3) {
+				if (wall->getBox(i) == 3) {
+					middleCenterColor_ = goalBaseColor_;
+				}
+				else {
+					middleCenterColor_ = middleBaseColor_;
+				}
 				middleCenterFlag = true;
 			}
 			else {
@@ -150,7 +163,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::backRight:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				backRightFlag = true;
 			}
 			else {
@@ -158,7 +171,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::middleLeft:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				middleLeftFlag = true;
 			}
 			else {
@@ -166,7 +179,13 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::frontCenter:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1 || wall->getBox(i) == 3) {
+				if (wall->getBox(i) == 3) {
+					frontCenterColor_ = goalBaseColor_;
+				}
+				else {
+					frontCenterColor_ = frontBaseColor_;
+				}
 				frontCenterFlag = true;
 			}
 			else {
@@ -174,7 +193,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::middleRight:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				middleRightFlag = true;
 			}
 			else {
@@ -182,7 +201,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			}
 			break;
 		case Wall::frontLeft:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				frontLeftFlag = true;
 			}
 			else {
@@ -193,7 +212,7 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 			
 			break;
 		case Wall::frontRight:
-			if (wall.getBox(i) == 1) {
+			if (wall->getBox(i) == 1) {
 				frontRightFlag = true;
 			}
 			else {
@@ -287,7 +306,6 @@ void DrawWall::Draw()
 {
 	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, WHITE, kFillModeWireFrame);
 	Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y), gridWidth_, gridHeight_, 0.0f, backGround_, kFillModeSolid);
-	//Novice::DrawBox(static_cast<int>(grid_.LeftTop.x), static_cast<int>(grid_.LeftTop.y + gridHeight_ / 2.0f), gridWidth_, gridHeight_/2, 0.0f, WHITE, kFillModeSolid);
 	Quad frontLeftTmp = frontLefttrapezoid_ * frontLeftWorld_;
 	Quad frontRightTmp = frontLefttrapezoid_ * frontRightWorld_;
 	Quad frontCenterTmp = frontCentertrapezoid_ * frontCenterWorld_;
@@ -303,7 +321,10 @@ void DrawWall::Draw()
 	Quad backRightTmp = backLefttrapezoid_ * backRightWorld_;
 	Quad backRightWallTmp = backLeftWalltrapezoid_ * backRightWallWorld_;
 	Quad backCenterTmp = backCentertrapezoid_ * backCenterWorld_;
-
+	
+	if (backCenterFlag) {
+		Novice::DrawQuad(backCenterTmp, middleCenterColor_);
+	}
 	if (backLeftFlag) {
 		Novice::DrawQuad(backLeftTmp, backColor_);
 		Novice::DrawQuad(backLeftWallTmp, backColor_);
@@ -312,8 +333,8 @@ void DrawWall::Draw()
 		Novice::DrawQuad(backRightTmp, backColor_);
 		Novice::DrawQuad(backRightWallTmp, backColor_);
 	}
-	if (backCenterFlag) {
-		Novice::DrawQuad(backCenterTmp, backColor_);
+	if (middleCenterFlag) {
+		Novice::DrawQuad(middleCenterTmp, middleCenterColor_);
 	}
 	if (middleLeftFlag) {
 		Novice::DrawQuad(middleLeftTmp, middleColor_);
@@ -323,8 +344,8 @@ void DrawWall::Draw()
 		Novice::DrawQuad(middleRightTmp, middleColor_);
 		Novice::DrawQuad(middleRightWallTmp, middleColor_);
 	}
-	if (middleCenterFlag) {
-		Novice::DrawQuad(middleCenterTmp, middleColor_);
+	if (frontCenterFlag) {
+		Novice::DrawQuad(frontCenterTmp, frontCenterColor_);
 	}
 	if (frontLeftFlag) {
 		Novice::DrawQuad(frontLeftTmp, frontColor_);
@@ -332,9 +353,7 @@ void DrawWall::Draw()
 	if (frontRightFlag) {
 		Novice::DrawQuad(frontRightTmp, frontColor_);
 	}
-	if (frontCenterFlag) {
-		Novice::DrawQuad(frontCenterTmp, frontColor_);
-	}
+	
 	
 
 
@@ -367,7 +386,7 @@ void DrawWall::Draw()
 	//
 	//Novice::DrawLine(backLeftTmp.RightBottom.x, backLeftTmp.RightBottom.y, backLeftTmp.RightBottom.x, grid_.LeftTop.y + gridHeight_, BLUE);
 	//Novice::ScreenPrintf(500, 600, "BLUE:%f", grid_.LeftTop.y + gridHeight_ - backLeftTmp.RightBottom.y);
-	Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
+	/*Novice::ScreenPrintf(1100, 200, "frontLeft  	:1");
 	Novice::ScreenPrintf(1100, 220, "middleLeft 	:2");
 	Novice::ScreenPrintf(1100, 240, "backLeft   	:3");
 	Novice::ScreenPrintf(1100, 280, "frontRight	 :4");
@@ -386,7 +405,7 @@ void DrawWall::Draw()
 	Novice::ScreenPrintf(1100, 320, "backRight	  :6");
 	Novice::ScreenPrintf(1100, 360, "backCenter	 :7");
 	Novice::ScreenPrintf(1100, 380, "middleCenter:8");
-	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
+	Novice::ScreenPrintf(1100, 400, "frontCenter :9");*/
 }
 
 void DrawWall::SetMatrix(Matrix33& world,Matrix33& matScale, Matrix33& matRotate, Matrix33& matTransform, const float scale, const float rotate, const Vec2 position)

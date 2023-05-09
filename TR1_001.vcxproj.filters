@@ -130,5 +130,6 @@
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Matrix33 .h" />
     <ClInclude Include="DrawWall.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
 </Project>

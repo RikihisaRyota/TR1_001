@@ -7,9 +7,8 @@ class Wall
 public:
 	Wall();
 	void Init();
-	void Draw();
-	void Update(Player& player,Mapchip& map);
-	void ChackDraw(Player& player, Mapchip& map);
+	void Update(Player* player, Mapchip* map);
+	void ChackDraw(Player* player, Mapchip* map);
 	Vec2 ChengeMap(Vec2 pos);
 
 	inline int getBox(const int index) const {
@@ -34,7 +33,6 @@ private:
 	
 	int m_Box[kMax];
 	Vec2 m_Pos[kMax];
-	void SetBox(int box, int num);
-	void SetGrid(Player& player);
+	void SetGrid(Player* player);
 };
 
