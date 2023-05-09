@@ -11,7 +11,7 @@ Vec2 Vec2::operator-() const { return { -x, -y }; }
 Vec2& Vec2::operator=(const Vec2& other)
 {
 	if (this != &other) {
-		// 各メンバーの値を代入する
+		// 蜷�繝｡繝ｳ繝舌�ｼ縺ｮ蛟､繧剃ｻ｣蜈･縺吶ｋ
 		x = other.x;
 		y = other.y;
 	}
