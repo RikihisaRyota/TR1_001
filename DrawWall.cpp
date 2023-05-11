@@ -284,6 +284,17 @@ void DrawWall::Update(const Player& player, const Wall& wall)
 				frontCenterFlag = false;
 			}
 		}
+		else if (m_Keys[DIK_0]) {
+			frontLeftFlag = false;
+			middleLeftFlag = false;
+			backLeftFlag = false;
+			frontRightFlag = false;
+			middleRightFlag = false;
+			backRightFlag = false;
+			backCenterFlag = false;
+			middleCenterFlag = false;
+			frontCenterFlag = false;
+		}
 	}
 }
 
@@ -379,6 +390,7 @@ void DrawWall::Draw()
 	Novice::ScreenPrintf(1100, 360, "backCenter	 :7");
 	Novice::ScreenPrintf(1100, 380, "middleCenter:8");
 	Novice::ScreenPrintf(1100, 400, "frontCenter :9");
+	Novice::ScreenPrintf(1100, 440, "reset							:0");
 }
 
 void DrawWall::SetMatrix(Matrix33& world,Matrix33& matScale, Matrix33& matRotate, Matrix33& matTransform, const float scale, const float rotate, const Vec2 position)
@@ -428,6 +440,10 @@ bool DrawWall::IsTriger(char* key, char* prekey)
 	}
 
 	if (prekey[DIK_9] == 0 && key[DIK_9] != 0) {
+		return true;
+	}
+
+	if (prekey[DIK_0] == 0 && key[DIK_0] != 0) {
 		return true;
 	}
 
