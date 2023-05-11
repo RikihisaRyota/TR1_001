@@ -26,8 +26,12 @@ void Mapchip::Draw()
 {
 	for (int y = 0; y < kMapChipWidth; y++) {
 		for (int x = 0; x < kMapChipWidth; x++) {
-			if (m_Mapchip[y][x] == 1)
-				Novice::DrawQuad(x * kChipSize, y * kChipSize, x * kChipSize + kChipSize - 1, y * kChipSize, x * kChipSize, y * kChipSize+kChipSize-1, x * kChipSize + kChipSize - 1, y * kChipSize + kChipSize - 1,0,0, kChipSize, kChipSize, 192, 0xFFFFFF77);
+			if (m_Mapchip[y][x] == 1) {
+				Novice::DrawQuad(x * kChipSize, y * kChipSize, x * kChipSize + kChipSize - 1, y * kChipSize, x * kChipSize, y * kChipSize + kChipSize - 1, x * kChipSize + kChipSize - 1, y * kChipSize + kChipSize - 1, 0, 0, kChipSize, kChipSize, 192, 0xFFFFFF77);
+			}
+			else if (m_Mapchip[y][x] == 3) {
+				Novice::DrawQuad(x * kChipSize, y * kChipSize, x * kChipSize + kChipSize - 1, y * kChipSize, x * kChipSize, y * kChipSize + kChipSize - 1, x * kChipSize + kChipSize - 1, y * kChipSize + kChipSize - 1, 0, 0, kChipSize, kChipSize, 192, 0xFFFFFF77);
+			}
 		}
 	}
 }
