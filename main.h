@@ -18,8 +18,8 @@ Wall* wall;
 DrawWall* drawWall;
 
 //GameScene
-int gameScene = 0;
-int nextGameScene = 0;
+int gameScene = 1;
+int nextGameScene = 1;
 int sceneChangeColor = 0x00000000;
 bool sceneChangeFlag = false;
 bool sceneOnFlag = false;
