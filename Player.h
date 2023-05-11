@@ -26,10 +26,13 @@ private:
 	int m_BackArrowTexture;
 	int m_RightArrowTexture;
 	int m_LeftArrowTexture;
+	bool m_DrawFlag = false;
 private:
 	void CheckMove(Mapchip* map, int& num);
 	void SetFront(Vec2 vec);
 	bool IsTriger(char* key, char* prekey);
+	bool IsPress(char* key, char* prekey);
+
 public:
 	//ゲッター
 	Vec2 GetPos() { return m_Pos; };

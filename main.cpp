@@ -74,6 +74,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 			break;
 		case 1:
+			mapchip->Update();
 			player->Update(mapchip, nextGameScene);
 			wall->Update(player, mapchip);
 			drawWall->Update(player, wall);
