@@ -41,6 +41,21 @@ void Wall::ChackDraw(Player* player, Mapchip* map)
 	}
 }
 
+void Wall::Draw()
+{
+	for (size_t i = 0; i < kMax; i++) {
+		if (m_Box[i] == 0) {
+			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, WHITE, kFillModeSolid);
+		}
+		else if (m_Box[i] == 1) {
+			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, RED, kFillModeWireFrame);
+		}
+		else {
+			Novice::DrawEllipse(static_cast<int>(m_Pos[i].x + Mapchip::kChipSize / 2), static_cast<int>(m_Pos[i].y + Mapchip::kChipSize / 2), Mapchip::kChipSize / 2, Mapchip::kChipSize / 2, 0.0f, BLUE, kFillModeWireFrame);
+		}
+	}
+}
+
 Vec2 Wall::ChengeMap(Vec2 pos)
 {
 	Vec2 tmp;

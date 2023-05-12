@@ -107,9 +107,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			Novice::DrawQuad(0,0,1280,0,0,720,1280,720,0,0,1280,720,TITLE,WHITE);
 			break;
 		case 1:
-			Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x333333FF, kFillModeSolid);
+			/*Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x333333FF, kFillModeSolid);*/
 			mapchip->Draw();
 			player->Draw();
+			wall->Draw();
 			drawWall->Draw();
 			break;
 		case 2:

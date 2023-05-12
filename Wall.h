@@ -9,6 +9,7 @@ public:
 	void Init();
 	void Update(Player* player, Mapchip* map);
 	void ChackDraw(Player* player, Mapchip* map);
+	void Draw();
 	Vec2 ChengeMap(Vec2 pos);
 
 	inline int getBox(const int index) const {
