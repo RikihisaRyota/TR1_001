@@ -328,6 +328,16 @@ void DrawWall::Draw()
 	if (backCenterFlag) {
 		Novice::DrawQuad(backCenterTmp, backColor);
 	}
+	Novice::DrawLine(static_cast<int>(backLeftTmp.LeftTop.x), static_cast<int>(backLeftTmp.LeftTop.y), static_cast<int>(backLeftTmp.RightTop.x), static_cast<int>(backLeftTmp.RightTop.y), BLACK);
+	Novice::DrawLine(static_cast<int>(backLeftTmp.LeftBottom.x), static_cast<int>(backLeftTmp.LeftBottom.y), static_cast<int>(backLeftTmp.RightBottom.x), static_cast<int>(backLeftTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(backRightTmp.LeftBottom.x), static_cast<int>(backRightTmp.LeftBottom.y), static_cast<int>(backRightTmp.RightBottom.x), static_cast<int> (backRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(backRightTmp.LeftTop.x), static_cast<int>(backRightTmp.LeftTop.y), static_cast<int>(backRightTmp.RightTop.x), static_cast<int>(backRightTmp.RightTop.y), BLACK);
+
+	Novice::DrawLine(static_cast<int>(backLeftTmp.RightTop.x), static_cast<int>(backLeftTmp.RightTop.y), static_cast<int>(backRightTmp.RightBottom.x), static_cast<int> (backRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(backLeftTmp.RightBottom.x), static_cast<int>(backLeftTmp.RightBottom.y), static_cast<int>(backRightTmp.RightTop.x), static_cast<int> (backRightTmp.RightTop.y), BLACK);
+
+	Novice::DrawLine(static_cast<int>(backLeftTmp.RightTop.x), static_cast<int>(backLeftTmp.RightTop.y), static_cast<int>(backLeftTmp.RightBottom.x), static_cast<int> (backLeftTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(backRightTmp.RightBottom.x), static_cast<int>(backRightTmp.RightBottom.y), static_cast<int>(backRightTmp.RightTop.x), static_cast<int> (backRightTmp.RightTop.y), BLACK);
 	if (middleLeftFlag) {
 		Novice::DrawQuad(middleLeftTmp, middleColor);
 		Novice::DrawQuad(middleLeftWallTmp, middleColor);
@@ -339,6 +349,16 @@ void DrawWall::Draw()
 	if (middleCenterFlag) {
 		Novice::DrawQuad(middleCenterTmp, middleColor);
 	}
+	Novice::DrawLine(static_cast<int>(middleLeftTmp.LeftTop.x), static_cast<int>(middleLeftTmp.LeftTop.y), static_cast<int>(middleLeftTmp.RightTop.x), static_cast<int>(middleLeftTmp.RightTop.y), BLACK);
+	Novice::DrawLine(static_cast<int>(middleLeftTmp.LeftBottom.x), static_cast<int>(middleLeftTmp.LeftBottom.y), static_cast<int>(middleLeftTmp.RightBottom.x), static_cast<int>(middleLeftTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(middleRightTmp.LeftBottom.x), static_cast<int>(middleRightTmp.LeftBottom.y), static_cast<int>(middleRightTmp.RightBottom.x), static_cast<int> (middleRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(middleRightTmp.LeftTop.x), static_cast<int>(middleRightTmp.LeftTop.y), static_cast<int>(middleRightTmp.RightTop.x), static_cast<int>(middleRightTmp.RightTop.y), BLACK);
+
+	Novice::DrawLine(static_cast<int>(middleLeftTmp.RightTop.x), static_cast<int>(middleLeftTmp.RightTop.y), static_cast<int>(middleRightTmp.RightBottom.x), static_cast<int> (middleRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(middleLeftTmp.RightBottom.x), static_cast<int>(middleLeftTmp.RightBottom.y), static_cast<int>(middleRightTmp.RightTop.x), static_cast<int> (middleRightTmp.RightTop.y), BLACK);
+
+	Novice::DrawLine(static_cast<int>(middleLeftTmp.RightTop.x), static_cast<int>(middleLeftTmp.RightTop.y), static_cast<int>(middleLeftTmp.RightBottom.x), static_cast<int> (middleLeftTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(middleRightTmp.RightBottom.x), static_cast<int>(middleRightTmp.RightBottom.y), static_cast<int>(middleRightTmp.RightTop.x), static_cast<int> (middleRightTmp.RightTop.y), BLACK);
 	if (frontLeftFlag) {
 		Novice::DrawQuad(frontLeftTmp, frontColor);
 	}
@@ -348,9 +368,16 @@ void DrawWall::Draw()
 	if (frontCenterFlag) {
 		Novice::DrawQuad(frontCenterTmp, frontColor);
 	}
-	
+	Novice::DrawLine(static_cast<int>(frontLeftTmp.RightTop.x), static_cast<int>(frontLeftTmp.RightTop.y), static_cast<int>(frontRightTmp.RightBottom.x), static_cast<int> (frontRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(frontLeftTmp.RightBottom.x), static_cast<int>(frontLeftTmp.RightBottom.y), static_cast<int>(frontRightTmp.RightTop.x), static_cast<int> (frontRightTmp.RightTop.y), BLACK);
 
+	Novice::DrawLine(static_cast<int>(frontLeftTmp.RightTop.x), static_cast<int>(frontLeftTmp.RightTop.y), static_cast<int>(frontLeftTmp.RightBottom.x), static_cast<int> (frontLeftTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(frontRightTmp.RightBottom.x), static_cast<int>(frontRightTmp.RightBottom.y), static_cast<int>(frontRightTmp.RightTop.x), static_cast<int> (frontRightTmp.RightTop.y), BLACK);
 
+	Novice::DrawLine(static_cast<int>(frontLeftTmp.LeftTop.x), static_cast<int>(frontLeftTmp.LeftTop.y), static_cast<int>(frontLeftTmp.RightTop.x), static_cast<int>(frontLeftTmp.RightTop.y),BLACK);
+	Novice::DrawLine(static_cast<int>(frontLeftTmp.LeftBottom.x), static_cast<int>(frontLeftTmp.LeftBottom.y), static_cast<int>(frontLeftTmp.RightBottom.x), static_cast<int>(frontLeftTmp.RightBottom.y),BLACK);
+	Novice::DrawLine(static_cast<int>(frontRightTmp.LeftBottom.x), static_cast<int>(frontRightTmp.LeftBottom.y), static_cast<int>(frontRightTmp.RightBottom.x), static_cast<int> (frontRightTmp.RightBottom.y), BLACK);
+	Novice::DrawLine(static_cast<int>(frontRightTmp.LeftTop.x), static_cast<int>(frontRightTmp.LeftTop.y), static_cast<int>(frontRightTmp.RightTop.x), static_cast<int>(frontRightTmp.RightTop.y), BLACK);
 
 	//デバック
 	//Novice::DrawLine(frontLeftTmp.RightTop.x, frontLeftTmp.RightTop.y, frontRightTmp.LeftBottom.x, frontRightTmp.RightBottom.y, BLACK);
